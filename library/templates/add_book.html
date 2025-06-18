@@ -8,7 +8,6 @@
         <h2 class="text-center text-2xl font-semibold mb-6">Add Book</h2>
         <form method="post" enctype="multipart/form-data" class="w-full" action="">
             {% csrf_token %}
-            
             {% if messages %}
                 <div class="mb-4">
                     {% for message in messages %}
