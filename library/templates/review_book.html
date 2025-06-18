@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Review Book{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-semibold mb-4">Review Book</h2>
+    <form method="post" action="{% url 'review_book' book.id %}" class="max-w-sm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit
+            Review</button>
+    </form>
+</div>
+{% endblock %}

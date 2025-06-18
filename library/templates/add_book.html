@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Book{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
+        <h2 class="text-center text-2xl font-semibold mb-6">Add Book</h2>
+        <form method="post" enctype="multipart/form-data" class="w-full" action="">
+            {% csrf_token %}
+            
+            {% if messages %}
+                <div class="mb-4">
+                    {% for message in messages %}
+                        <div class="text-sm text-{{ message.tags }}-600">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {{ form.as_p }}
+
+            <button type="submit" 
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-6 w-full">
+                Add Book
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

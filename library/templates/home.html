@@ -1,5 +1,55 @@
 {% extends 'base.html'%}
-
+{% load static %}
+{% block title %}Home{% endblock %}
 {% block content %}
-<h1>This is Home Page</h1>
+<div class="running-text-wrapper">
+    <img src="{% static 'banner.png' %}" alt="Library Banner">
+    <div class="running-text">
+        Welcome to Our Library — Explore, Read, and Discover!
+    </div>
+</div>
+{% if user.is_authenticated %}
+<div class="flex ">
+    <div class="w-full lg:w-1/4 p-4 ">
+        <p class="text-gray-700 mb-4">Total results found: {{ books|length }}</p>
+        <div class="bg-white p-4 shadow-md rounded ">
+            <h3 class="text-xl font-bold mb-4">Filter by Category</h3>
+            <ul>
+                {% for category in categories %}
+                <li class="mb-2"><a href="?category={{ category.id }}" class="text-blue-500 ">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="w-full lg:w-3/4 p-4">
+        <h2>All Books</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for book in books %}
+            <div class="bg-white p-4 shadow-md rounded">
+                {% if book.image %}
+                <img src="{{ book.image.url }}" alt="{{ book.title }}" class="w-full h-48 object-cover mb-4">
+                {% else %}
+                <img src="{% static 'book1.jpg' %}" alt="Default Book Image"
+                    class="w-full h-48 object-cover mb-4">
+                {% endif %}
+                <h4 class="text-lg font-semibold mb-2"><a href="{% url 'book_detail' book.id %}"
+                        class="text-blue-500 hover:underline">{{ book.title }}</a></h4>
+                <p class="text-gray-700 mb-2">{{ book.description | truncatewords:10 }}</p>
+                <p class="text-gray-900 font-bold mb-4">Price: {{ book.borrowing_price }}</p>
+                {% comment %} <form method="post" action="{% url 'borrow_book' %}" class="text-center">
+                    {% csrf_token %}
+                    <input type="hidden" name="book_id" value="{{ book.id }}">
+                    <button type="submit"
+                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Borrow</button>
+                </form> {% endcomment %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% else %}
+<p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">signup</a> to view books.</p>
+{% endif %}
+</div>
 {% endblock %}
