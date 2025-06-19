@@ -50,8 +50,15 @@ class RegisterView(FormView):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
+            
+            send_mail(
+                'Welcome to Our Library',
+                f'Hello {user.username},\n\nThank you for registering at our Library Management System.\n\nWe are happy to have you on board!',
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+            )
 
-            messages.success(request, 'Registration successful')
+            messages.success(request, 'Account created successfully. Please log in')
             return redirect(self.get_success_url())
 
         else:
@@ -123,7 +130,7 @@ class BorrowBookView(LoginRequiredMixin, View):
                 user_profile.save()
                 send_mail(
                     'Book Borrow Successful',
-                    f'Hello {request.user},\n\nYou have successfully borrowed "{book}"\n\n this book of price {book.borrowing_price}.\n\nThank you!',
+                    f'Hello {request.user},\n\nYou have successfully borrowed "{book}".\n\n This book of price {book.borrowing_price}.\n\nThank you!',
                     settings.DEFAULT_FROM_EMAIL,
                     [self.request.user.email]
                 )
@@ -179,7 +186,7 @@ class DepositeMoneyView(LoginRequiredMixin, FormView):
         self.request.user.profile.save()
         send_mail(
             'Deposit Successful',
-            f'You have successfully deposited {amount} taka to your account',
+            f'You have successfully deposited {amount} taka to your account.\n\nThank you!',
             settings.DEFAULT_FROM_EMAIL,
             [self.request.user.email]
         )
