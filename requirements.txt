@@ -8,7 +8,6 @@ django-crispy-forms
 django-email
 django-environ
 filelock
-MouseInfo
 mysql-connector-python
 numpy
 opencv-contrib-python
@@ -17,10 +16,6 @@ pillow
 pipenv
 platformdirs
 psycopg2-binary
-PyAutoGUI
-PyGetWindow
-PyMsgBox
-pyobjc-core
 pyobjc-framework-Cocoa
 pyobjc-framework-Quartz
 pyperclip
