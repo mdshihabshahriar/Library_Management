@@ -70,6 +70,8 @@ A web-based Library Management System built using **Python**, **Django**, **HTML
 For any queries or collaboration:
 
 **MD. Shihab Shahriar**
+
     📧 Email: [shihabshahriar.contact@gmail.com]
+    
     🌐 GitHub: @mdshihabshahriar
 
