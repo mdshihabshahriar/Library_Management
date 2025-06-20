@@ -47,6 +47,7 @@ A web-based Library Management System built using **Python**, **Django**, **HTML
 
 2. **Create a virtual environment:**
 
+    ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate
 
@@ -68,7 +69,7 @@ A web-based Library Management System built using **Python**, **Django**, **HTML
 # 📬 Contact
 For any queries or collaboration:
 
-MD. Shihab Shahriar
-📧 Email: [shihabshahriar.contact@gmail.com]
-🌐 GitHub: @mdshihabshahriar
+**MD. Shihab Shahriar**
+    📧 Email: [shihabshahriar.contact@gmail.com]
+    🌐 GitHub: @mdshihabshahriar
 
