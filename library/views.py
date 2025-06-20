@@ -130,7 +130,7 @@ class BorrowBookView(LoginRequiredMixin, View):
                 user_profile.save()
                 send_mail(
                     'Book Borrow Successful',
-                    f'Hello {request.user},\n\nYou have successfully borrowed "{book}".\n\n This book of price {book.borrowing_price}.\n\nThank you!',
+                    f'Hello {request.user},\n\nYou have successfully borrowed "{book}".\n\n This book of price {book.borrowing_price} Taka.\n\nThank you!',
                     settings.DEFAULT_FROM_EMAIL,
                     [self.request.user.email]
                 )
@@ -176,7 +176,7 @@ class BorrowHistoryView(LoginRequiredMixin, ListView):
         return redirect('borrow_history')
 
 class DepositeMoneyView(LoginRequiredMixin, FormView):
-    template_name = 'deposite.html'
+    template_name = 'deposit.html'
     form_class = DepositForm
     success_url = reverse_lazy('book_list')
 
@@ -186,11 +186,11 @@ class DepositeMoneyView(LoginRequiredMixin, FormView):
         self.request.user.profile.save()
         send_mail(
             'Deposit Successful',
-            f'You have successfully deposited {amount} taka to your account.\n\nThank you!',
+            f'You have successfully deposited {amount} Taka to your account.\n\nThank you!',
             settings.DEFAULT_FROM_EMAIL,
             [self.request.user.email]
         )
-        messages.success(self.request, 'Deposite successful')
+        messages.success(self.request, 'Deposit successful')
         return super().form_valid(form)
 
 class ReviewBookView(LoginRequiredMixin, View):
